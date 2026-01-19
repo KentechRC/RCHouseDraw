@@ -1,0 +1,253 @@
+:root {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --accent-blue: #2d4eff; /* Brighter blue for the button/gradient core */
+    --gradient-blue: rgba(45, 78, 255, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif; /* Clean sans-serif */
+    background-color: var(--bg-color);
+    /* The large blue radial gradient effect */
+    background-image: radial-gradient(circle at 50% 50%, var(--gradient-blue) 0%, transparent 70%);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.5;
+}
+
+/* Optional: Keep stars but make them subtle or remove if strictly following the clean image. 
+   The user asked to imitate the image, which is clean. 
+   I will make them very subtle to maintain the "magic" feel but blend with the new theme. */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3; /* Reduced opacity */
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--duration) infinite ease-in-out;
+    opacity: 0;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 0.8; transform: scale(1.2); }
+}
+
+/* Main Container - More transparent to let the gradient show through */
+.container {
+    width: 90%;
+    max-width: 600px; /* Slightly wider */
+    background: transparent; /* Clean look */
+    /* backdrop-filter: blur(10px);  Optional, removed for stark contrast like image */
+    border: none;
+    padding: 40px;
+    text-align: center;
+    z-index: 10;
+    position: relative;
+    overflow: visible;
+}
+
+/* Typography styles matching the bold, impactful image text */
+h1 {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    font-weight: 800; /* Extra Bold */
+    font-size: 3.5rem; /* Larger title */
+    margin-bottom: 10px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+/* Input Form Styling */
+#inputSection {
+    margin-top: 40px;
+}
+
+.input-group {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #ccc;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 15px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #555; /* Underline style or minimal border */
+    color: #fff;
+    font-size: 1.5rem; /* Large input text */
+    font-weight: 300;
+    outline: none;
+    transition: 0.3s;
+    border-radius: 0;
+}
+
+input:focus {
+    border-bottom-color: var(--accent-blue);
+}
+
+input::placeholder {
+    color: #555;
+    font-size: 1.5rem;
+}
+
+/* Button Styling - The Reboot "Pill" Button */
+.magic-btn {
+    width: auto;
+    min-width: 200px;
+    padding: 15px 40px;
+    margin-top: 30px;
+    background-color: var(--accent-blue);
+    background-image: none; /* Remove previous gradient */
+    border: none;
+    border-radius: 50px; /* Pill shape */
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+}
+
+.magic-btn:hover {
+    background-color: #1a35cc;
+    transform: translateY(-2px);
+}
+
+.magic-btn:active {
+    transform: scale(0.98);
+}
+
+/* Add an arrow pseudo-element if not changing HTML, 
+   but usually better to add SVG in HTML. 
+   For now, styling the button to look like the image. */
+
+/* Loader */
+.loader {
+    display: none;
+    margin: 30px auto;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: var(--accent-blue);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Result Section */
+.result-container {
+    display: none;
+    margin-top: 30px;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.house-card {
+    padding: 40px;
+    border-radius: 20px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05); /* Subtle card bg */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Keep House Colors but modernized */
+.house-edison {
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.1);
+}
+
+.house-tesla {
+    box-shadow: 0 0 50px rgba(0, 210, 255, 0.1);
+}
+
+.house-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.edison-text { color: #ffd700; }
+.tesla-text { color: #00d2ff; }
+
+.result-title {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.result-msg {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+.error-msg {
+    color: #ff6b6b;
+    margin-top: 20px;
+    display: none;
+    font-weight: 500;
+}
+
+.reset-btn {
+    background: transparent;
+    border: 1px solid #555;
+    color: #888;
+    padding: 10px 25px;
+    border-radius: 30px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.reset-btn:hover {
+    border-color: #fff;
+    color: #fff;
+}

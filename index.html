@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KENTECH House Sorting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Using Pretendard via CDN -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="stars" id="starContainer"></div>
+
+    <div class="container" id="mainContainer">
+        <div class="logo">KENTECH</div>
+        <h1>House Sorting</h1>
+
+        <div id="inputSection">
+            <div class="input-group">
+                <label for="studentName">이름 (Name)</label>
+                <input type="text" id="studentName" placeholder="홍길동" autocomplete="off">
+            </div>
+            
+            <div class="input-group">
+                <label for="birthDate">생년월일 (YYYYMMDD)</label>
+                <input type="text" id="birthDate" placeholder="20050101" maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </div>
+
+            <button class="magic-btn" onclick="checkHouse()">하우스 확인하기 <span>&rarr;</span></button>
+            <p class="error-msg" id="errorMsg">정보를 찾을 수 없습니다.<br>이름과 생년월일을 확인해주세요.</p>
+        </div>
+
+        <div class="loader" id="loader"></div>
+
+        <div class="result-container" id="resultSection">
+            
+            <!-- Edison Card -->
+            <div id="edisonCard" class="house-card house-edison" style="display: none;">
+                <span class="house-icon">💡</span>
+                <div class="result-title edison-text">EDISON HOUSE</div>
+                <p class="result-msg">
+                    축하합니다! 당신은 <strong>에디슨 하우스</strong>의 일원입니다.<br>
+                    창의적인 생각으로 세상을 밝힐 당신을 환영합니다.
+                </p>
+            </div>
+
+            <!-- Tesla Card -->
+            <div id="teslaCard" class="house-card house-tesla" style="display: none;">
+                <span class="house-icon">⚡</span>
+                <div class="result-title tesla-text">TESLA HOUSE</div>
+                <p class="result-msg">
+                    축하합니다! 당신은 <strong>테슬라 하우스</strong>의 일원입니다.<br>
+                    혁신적인 미래를 이끌어갈 당신을 환영합니다.
+                </p>
+            </div>
+
+            <button class="reset-btn" onclick="resetForm()">다시 조회하기</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
