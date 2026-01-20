@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KENTECH RC House 배정</title>
+    <title>KENTECH Digital House Sorting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Using Pretendard via CDN -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     
@@ -18,12 +17,12 @@
     <div class="stars" id="starContainer"></div>
 
     <div class="container" id="mainContainer">
-        <div class="logo">
-            <span class="logo-main">K</span><span class="logo-accent">E</span><span class="logo-main">NT</span><span class="logo-accent">E</span><span class="logo-main">CH RC</span>
-        </div>
-        <h1>House 배정</h1>
-
-        <div id="inputSection">
+        
+        <!-- INTRO SECTION -->
+        <div id="introSection">
+            <div class="logo">KENTECH RC HOUSE</div>
+            <h1>Digital Sorting Hat</h1>
+            
             <div class="input-group">
                 <label for="studentName">이름 (Name)</label>
                 <input type="text" id="studentName" placeholder="홍길동" autocomplete="off">
@@ -34,35 +33,35 @@
                 <input type="text" id="birthDate" placeholder="20031231" maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
             </div>
 
-            <button class="magic-btn" onclick="checkHouse()">하우스 확인하기 <span>&rarr;</span></button>
-            <p class="error-msg" id="errorMsg">정보를 찾을 수 없습니다.<br>이름과 생년월일을 확인해주세요.</p>
+            <button class="magic-btn" onclick="checkHouse()">에너지 분석하기</button>
+            <p class="error-msg" id="errorMsg"></p>
         </div>
 
-        <div class="loader" id="loader"></div>
-
-        <div class="result-container" id="resultSection">
-            
-            <!-- Edison Card -->
-            <div id="edisonCard" class="house-card house-edison" style="display: none;">
-                <span class="house-icon">💡</span>
-                <div class="result-title edison-text">EDISON HOUSE</div>
-                <p class="result-msg">
-                    축하합니다! 당신은 <strong>에디슨 하우스</strong>의 일원입니다.<br>
-                    창의적인 생각으로 세상을 밝힐 당신을 환영합니다.
-                </p>
+        <!-- ANALYZING SECTION -->
+        <div id="analyzingSection">
+            <div class="energy-sphere">
+                <div class="energy-ring"></div>
+                <div class="energy-ring"></div>
             </div>
+            <div class="analyzing-text">에너지를 분석중입니다...</div>
+        </div>
 
-            <!-- Tesla Card -->
-            <div id="teslaCard" class="house-card house-tesla" style="display: none;">
-                <span class="house-icon">⚡</span>
-                <div class="result-title tesla-text">TESLA HOUSE</div>
-                <p class="result-msg">
-                    축하합니다! 당신은 <strong>테슬라 하우스</strong>의 일원입니다.<br>
-                    혁신적인 미래를 이끌어갈 당신을 환영합니다.
-                </p>
-            </div>
+        <!-- RESULT SECTION (Original - kept for fallback or structural integrity if needed, but overlay handles main reveal) -->
+        <div id="resultSection">
+            <!-- Content will be hidden/managed via JS or Overlay takes precedence -->
+        </div>
 
-            <button class="reset-btn" onclick="resetForm()">다시 조회하기</button>
+    </div>
+
+    <!-- CINEMATIC OVERLAY -->
+    <div id="resultOverlay">
+        <div class="cinematic-slogan" id="sloganText"></div>
+        <div class="congrats-text" id="congratsText"></div>
+        <div class="result-image-container" id="resultImageContainer">
+            <img id="resultHouseImg" class="house-img" src="" alt="House Image">
+        </div>
+        <div class="final-details" id="finalDetails">
+             <button class="magic-btn" style="background: rgba(255,255,255,0.2); width: auto; padding: 10px 30px;" onclick="resetForm()">처음으로</button>
         </div>
     </div>
 

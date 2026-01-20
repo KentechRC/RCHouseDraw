@@ -1,39 +1,36 @@
 :root {
-    --bg-color: #00152e; /* Darker KENTECH Blue */
-    --text-color: #ffffff;
-    --accent-blue: #00a4e3; /* KENTECH Light Blue (Sky) */
-    --logo-blue: #2b60de; /* KENTECH Logo Blue */
-    --gradient-blue: rgba(0, 164, 227, 0.3);
+    --bg-color: #00152e; /* Dark Blue */
+    --accent-sky: #00a4e3; /* Sky Blue */
+    --accent-blue: #2b60de; /* Blue */
+    --accent-yellow: #ffd700; /* Edison Yellow */
+    --text-white: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(20px);
 }
 
 body {
-    font-family: 'Pretendard', 'Noto Sans KR', sans-serif; /* Clean sans-serif */
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
     background-color: var(--bg-color);
-    /* The large blue radial gradient effect */
-    background-image: radial-gradient(circle at 50% 50%, var(--gradient-blue) 0%, transparent 70%);
-    color: var(--text-color);
+    background-image: radial-gradient(circle at 50% 30%, rgba(43, 96, 222, 0.2) 0%, transparent 60%);
+    color: var(--text-white);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-x: hidden;
-    position: relative;
-    line-height: 1.5;
+    overflow: hidden;
+    margin: 0;
 }
 
-/* Optional: Keep stars but make them subtle or remove if strictly following the clean image. 
-   The user asked to imitate the image, which is clean. 
-   I will make them very subtle to maintain the "magic" feel but blend with the new theme. */
+/* Background Stars */
 .stars {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: -1;
     pointer-events: none;
-    z-index: 0;
-    opacity: 0.3; /* Reduced opacity */
 }
 
 .star {
@@ -49,217 +46,388 @@ body {
     50% { opacity: 0.8; transform: scale(1.2); }
 }
 
-/* Main Container - More transparent to let the gradient show through */
+/* Glassmorphism Container */
 .container {
     width: 90%;
-    max-width: 600px; /* Slightly wider */
-    background: transparent; /* Clean look */
-    /* backdrop-filter: blur(10px);  Optional, removed for stark contrast like image */
-    border: none;
-    padding: 40px;
+    max-width: 500px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     text-align: center;
-    z-index: 10;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
+    transition: all 0.5s ease;
 }
 
-/* Typography styles matching the bold, impactful image text */
+/* Typography */
 h1 {
-    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
-    font-weight: 800; /* Extra Bold */
-    font-size: 3.5rem; /* Larger title */
-    margin-bottom: 10px;
-    color: #fff;
-    line-height: 1.2;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
     text-transform: uppercase;
-    letter-spacing: -1px;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-sky) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(0, 164, 227, 0.3);
 }
 
 .logo {
-    font-size: 4.8rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-    color: #fff;
-    text-transform: uppercase;
-    -webkit-text-stroke: 1px #ffffff; /* White border around the text */
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    color: var(--accent-sky);
+    opacity: 0.8;
 }
 
-
-
-.logo-main {
-    color: var(--logo-blue);
-}
-
-.logo-accent {
-    color: var(--accent-blue);
-}
-
-/* Input Form Styling */
-#inputSection {
-    margin-top: 40px;
-}
-
+/* Input Styles */
 .input-group {
-    margin-bottom: 30px;
+    margin-bottom: 1.5rem;
     text-align: left;
 }
 
 label {
     display: block;
-    margin-bottom: 10px;
-    font-size: 1.6rem;
-    color: #ccc;
-    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 input {
     width: 100%;
-    padding: 15px 0;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #555; /* Underline style or minimal border */
-    color: #fff;
-    font-size: 1.5rem; /* Large input text */
-    font-weight: 300;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1rem;
     outline: none;
     transition: 0.3s;
-    border-radius: 0;
 }
 
 input:focus {
-    border-bottom-color: var(--accent-blue);
+    border-color: var(--accent-sky);
+    box-shadow: 0 0 15px rgba(0, 164, 227, 0.2);
 }
 
-input::placeholder {
-    color: #555;
-    font-size: 1.5rem;
-}
-
-/* Button Styling - The Reboot "Pill" Button */
+/* Magic Button */
 .magic-btn {
-    width: auto;
-    min-width: 200px;
-    padding: 15px 40px;
-    margin-top: 30px;
-    background-color: var(--accent-blue);
-    background-image: none; /* Remove previous gradient */
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
     border: none;
-    border-radius: 50px; /* Pill shape */
+    border-radius: 12px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-sky));
     color: white;
     font-size: 1.1rem;
-    font-weight: 600;
-    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    font-weight: 700;
     cursor: pointer;
-    transition: transform 0.2s, background-color 0.3s;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; 
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.magic-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
 }
 
 .magic-btn:hover {
-    background-color: #008ac0; /* Darker shade of #00a4e3 */
     transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 164, 227, 0.4);
 }
 
-.magic-btn:active {
-    transform: scale(0.98);
+.magic-btn:hover::before {
+    left: 100%;
 }
 
-/* Add an arrow pseudo-element if not changing HTML, 
-   but usually better to add SVG in HTML. 
-   For now, styling the button to look like the image. */
-
-/* Loader */
-.loader {
+/* ANALYZING SECTION (Electric Effect) */
+#analyzingSection {
     display: none;
-    margin: 30px auto;
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(255,255,255,0.3);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+}
+
+.energy-sphere {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    border-top-color: var(--accent-blue);
-    animation: spin 1s ease-in-out infinite;
+    background: radial-gradient(circle at 30% 30%, #fff, var(--accent-sky));
+    box-shadow: 0 0 30px var(--accent-sky), inset 0 0 20px #fff;
+    position: relative;
+    animation: pulseEnergy 1.5s infinite alternate;
+    margin-bottom: 2rem;
 }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
+.energy-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    border: 2px solid transparent;
+    border-top-color: var(--accent-sky);
+    border-bottom-color: var(--accent-blue);
+    border-radius: 50%;
+    animation: spinEnergy 1s linear infinite;
 }
 
-/* Result Section */
-.result-container {
+.energy-ring:nth-child(2) {
+    width: 120px;
+    height: 120px;
+    border-left-color: #fff;
+    animation: spinEnergy 2s linear infinite reverse;
+}
+
+@keyframes pulseEnergy {
+    0% { transform: scale(1); box-shadow: 0 0 30px var(--accent-sky); }
+    100% { transform: scale(1.1); box-shadow: 0 0 60px var(--accent-sky), 0 0 100px var(--accent-blue); }
+}
+
+@keyframes spinEnergy {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.analyzing-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    animation: textFlicker 2s infinite;
+}
+
+@keyframes textFlicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* RESULT SECTION */
+#resultSection {
     display: none;
-    margin-top: 30px;
-    animation: fadeIn 1s ease;
+    animation: fadeIn 0.8s ease-out;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-.house-card {
-    padding: 40px;
+.house-result-card {
+    padding: 2rem;
     border-radius: 20px;
-    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    margin-top: 1rem;
     position: relative;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.05); /* Subtle card bg */
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Keep House Colors but modernized */
-.house-edison {
-    box-shadow: 0 0 50px rgba(255, 215, 0, 0.1);
-}
-
-.house-tesla {
-    box-shadow: 0 0 50px rgba(0, 210, 255, 0.1);
-}
-
-.house-icon {
-    font-size: 5rem;
-    margin-bottom: 20px;
+.house-icon-large {
+    font-size: 6rem;
+    margin-bottom: 1rem;
     display: block;
+    animation: floatIcon 3s ease-in-out infinite;
 }
 
-.edison-text { color: #ffd700; }
-.tesla-text { color: #00d2ff; }
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
 
-.result-title {
-    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+/* EDISON STYLES */
+.reveal-edison .house-icon-large {
+    text-shadow: 0 0 40px var(--accent-yellow);
+    animation: bulbGlow 2s infinite alternate;
+}
+
+.reveal-edison .house-name {
+    color: var(--accent-yellow);
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes bulbGlow {
+    from { text-shadow: 0 0 20px var(--accent-yellow); }
+    to { text-shadow: 0 0 60px var(--accent-yellow), 0 0 20px #fff; }
+}
+
+/* TESLA STYLES */
+.reveal-tesla .house-icon-large {
+    text-shadow: 0 0 40px var(--accent-sky);
+    animation: lightningStrike 0.5s infinite alternate;
+}
+
+.reveal-tesla .house-name {
+    color: var(--accent-sky);
+    text-shadow: 0 0 20px rgba(0, 164, 227, 0.5);
+}
+
+@keyframes lightningStrike {
+    0% { opacity: 1; text-shadow: 0 0 30px var(--accent-sky); }
+    20% { opacity: 0.8; }
+    40% { opacity: 1; text-shadow: 0 0 60px #fff; }
+    100% { opacity: 0.9; text-shadow: 0 0 40px var(--accent-blue); }
+}
+
+.house-name {
     font-size: 2.5rem;
-    margin-bottom: 15px;
     font-weight: 800;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
 }
 
-.result-msg {
-    font-size: 1.2rem;
+.house-desc {
+    font-size: 1.1rem;
     line-height: 1.6;
-    color: #ddd;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .error-msg {
     color: #ff6b6b;
-    margin-top: 20px;
+    margin-top: 1rem;
     display: none;
-    font-weight: 500;
+    font-size: 0.9rem;
 }
 
-.reset-btn {
-    background: transparent;
-    border: 1px solid #555;
-    color: #888;
-    padding: 10px 25px;
-    border-radius: 30px;
-    margin-top: 30px;
-    cursor: pointer;
-    transition: 0.3s;
-    font-family: 'Pretendard', sans-serif;
+/* CINEMATIC OVERLAY */
+#resultOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Deep black for dip-to-black */
+    z-index: 9999; /* Top most */
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 1s ease;
 }
 
-.reset-btn:hover {
-    border-color: #fff;
+#resultOverlay.visible {
+    opacity: 1;
+}
+
+.cinematic-slogan {
+    font-size: 2rem; /* Slightly smaller to fit multi-line */
+    font-weight: 300;
     color: #fff;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    opacity: 0;
+    transform: translateY(20px);
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    font-family: 'Pretendard', sans-serif; 
+    white-space: pre-wrap; /* Allow newlines */
+    line-height: 1.6;
+    max-width: 90%;
 }
+
+.cinematic-slogan.reveal {
+    animation: sloganReveal 2s forwards;
+}
+
+.cinematic-slogan.fade-out {
+    animation: sloganFadeOut 1s forwards;
+}
+
+@keyframes sloganReveal {
+    0% { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes sloganFadeOut {
+    0% { opacity: 1; filter: blur(0); }
+    100% { opacity: 0; filter: blur(10px); }
+}
+
+/* Congrats Text */
+.congrats-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-sky);
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(-20px);
+    text-align: center;
+    position: absolute; /* Position absolutely to sit above the image area */
+    top: 15%; /* Adjust based on viewport */
+    width: 100%;
+    z-index: 10;
+}
+
+.congrats-text.reveal {
+    animation: fadeInDown 1s forwards;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-image-container {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    aspect-ratio: 1 / 1.2; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.8);
+    /* margin-top: 60px;  Space for the top text if needed, or rely on absolute positioning */
+}
+
+.result-image-container.reveal {
+    animation: imageReveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Specific House Styling for Overlay */
+.house-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(255,255,255,0.2));
+}
+
+.house-img.edison {
+    filter: drop-shadow(0 0 50px rgba(255, 215, 0, 0.6));
+}
+
+.house-img.tesla {
+    filter: drop-shadow(0 0 50px rgba(0, 164, 227, 0.8));
+}
+
+@keyframes imageReveal {
+    0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.final-details {
+    margin-top: 2rem;
+    opacity: 0;
+    text-align: center;
+}
+
+.final-details.reveal {
+    animation: fadeIn 1s 1s forwards; /* Delayed fade in */
+}
+
+/* Hide original result section elements when using overlay if desired, 
+   but for now we might use overlay AS the result section */
