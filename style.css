@@ -1,8 +1,9 @@
 :root {
-    --bg-color: #000000;
+    --bg-color: #00152e; /* Darker KENTECH Blue */
     --text-color: #ffffff;
-    --accent-blue: #2d4eff; /* Brighter blue for the button/gradient core */
-    --gradient-blue: rgba(45, 78, 255, 0.4);
+    --accent-blue: #00a4e3; /* KENTECH Light Blue (Sky) */
+    --logo-blue: #2b60de; /* KENTECH Logo Blue */
+    --gradient-blue: rgba(0, 164, 227, 0.3);
     --glass-border: rgba(255, 255, 255, 0.1);
 }
 
@@ -81,6 +82,17 @@ h1 {
     margin-bottom: 20px;
     color: #fff;
     text-transform: uppercase;
+    -webkit-text-stroke: 1px #ffffff; /* White border around the text */
+}
+
+
+
+.logo-main {
+    color: var(--logo-blue);
+}
+
+.logo-accent {
+    color: var(--accent-blue);
 }
 
 /* Input Form Styling */
@@ -147,7 +159,7 @@ input::placeholder {
 }
 
 .magic-btn:hover {
-    background-color: #1a35cc;
+    background-color: #008ac0; /* Darker shade of #00a4e3 */
     transform: translateY(-2px);
 }
 
