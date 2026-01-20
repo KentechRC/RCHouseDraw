@@ -85,7 +85,6 @@ async function checkHouse() {
 function showResult(house) {
     const overlay = document.getElementById('resultOverlay');
     const sloganText = document.getElementById('sloganText');
-    const congratsText = document.getElementById('congratsText');
     const resultImg = document.getElementById('resultHouseImg');
     const resultImgContainer = document.getElementById('resultImageContainer');
     const finalDetails = document.getElementById('finalDetails');
@@ -94,24 +93,20 @@ function showResult(house) {
     overlay.classList.remove('visible');
     sloganText.classList.remove('reveal');
     sloganText.classList.remove('fade-out');
-    congratsText.classList.remove('reveal'); 
     resultImgContainer.classList.remove('reveal');
     finalDetails.classList.remove('reveal');
     resultImg.className = 'house-img'; 
 
     let slogan = "";
-    let congrats = "";
     let imgSrc = "";
     let houseClass = "";
 
     if (house === 'Edison') {
-        slogan = "“천재는 1%의 영감과\n99%의 노력(땀)으로 이루어진다”";
-        congrats = "축하합니다! 당신의 하우스는<br><span style='color:#ffd700'>에디슨 하우스</span>입니다";
+        slogan = "“천재는 1%의 영감과\n99%의 노력으로 이루어진다”";
         imgSrc = "src/에디슨 로고.png";
         houseClass = "edison";
     } else if (house === 'Tesla') {
         slogan = "“당신의 증오를 전기로 바꿀 수 있다면,\n온 세상을 밝힐 것이다.”";
-        congrats = "축하합니다! 당신의 하우스는<br><span style='color:#00a4e3'>테슬라 하우스</span>입니다";
         imgSrc = "src/테슬라 로고.png";
         houseClass = "tesla";
     } else {
@@ -120,7 +115,6 @@ function showResult(house) {
     }
 
     sloganText.innerText = slogan;
-    congratsText.innerHTML = congrats; // Use innerHTML for styling spans
     resultImg.src = imgSrc;
     resultImg.classList.add(houseClass);
 
@@ -137,22 +131,15 @@ function showResult(house) {
         sloganText.classList.add('reveal');
     }, 800);
 
-    // 4. Fade Out Slogan (3.5s)
+    // 4. Reveal Image (Slogan stays visible)
     setTimeout(() => {
-        sloganText.classList.remove('reveal');
-        sloganText.classList.add('fade-out');
-    }, 3800);
-
-    // 5. Reveal Image & Congrats Text (4.5s)
-    setTimeout(() => {
-        congratsText.classList.add('reveal');
         resultImgContainer.classList.add('reveal');
-    }, 4500);
+    }, 2800); // Slightly earlier since we don't wait for fade out
 
-    // 6. Show Final Details (5.5s)
+    // 5. Show Final Details (3.8s)
     setTimeout(() => {
         finalDetails.classList.add('reveal');
-    }, 5500);
+    }, 3800);
 }
 
 

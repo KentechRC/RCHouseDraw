@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Cafe24Gowoonbam';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
 :root {
     --bg-color: #00152e; /* Dark Blue */
     --accent-sky: #00a4e3; /* Sky Blue */
@@ -322,20 +329,20 @@ input:focus {
 }
 
 .cinematic-slogan {
-    font-size: 2rem; /* Slightly smaller to fit multi-line */
-    font-weight: 300;
+    font-size: 2.8rem; /* Increased from 2rem */
+    font-weight: normal; 
     color: #fff;
-    margin-bottom: 2rem;
+    margin-top: 6rem;
     text-transform: uppercase;
     letter-spacing: 3px;
     opacity: 0;
     transform: translateY(20px);
     text-align: center;
     text-shadow: 0 0 10px rgba(255,255,255,0.5);
-    font-family: 'Pretendard', sans-serif; 
-    white-space: pre-wrap; /* Allow newlines */
-    line-height: 1.6;
-    max-width: 90%;
+    font-family: 'Cafe24Gowoonbam', sans-serif; 
+    white-space: pre-wrap; 
+    line-height: 1.4;
+    max-width: 95%; /* Use more width */
 }
 
 .cinematic-slogan.reveal {
@@ -365,8 +372,8 @@ input:focus {
     opacity: 0;
     transform: translateY(-20px);
     text-align: center;
-    position: absolute; /* Position absolutely to sit above the image area */
-    top: 15%; /* Adjust based on viewport */
+    position: absolute; 
+    top: 15%; 
     width: 100%;
     z-index: 10;
 }
@@ -382,16 +389,15 @@ input:focus {
 
 .result-image-container {
     position: relative;
-    width: 90%;
-    max-width: 500px;
+    width: 95%; /* Wider */
+    max-width: 700px; /* Increased from 500px */
     height: auto;
-    aspect-ratio: 1 / 1.2; 
+    aspect-ratio: 1 / 1; /* Square ratio for logo */
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
     transform: scale(0.8);
-    /* margin-top: 60px;  Space for the top text if needed, or rely on absolute positioning */
 }
 
 .result-image-container.reveal {
