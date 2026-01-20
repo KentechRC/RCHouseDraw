@@ -328,7 +328,7 @@ input:focus {
 }
 
 .cinematic-slogan {
-    font-size: 3rem; /* Slightly smaller to fit multi-line */
+    font-size: 2.5rem; /* Slightly smaller to fit multi-line */
     font-weight: normal; /* Font already has weight */
     color: #fff;
     margin-top: 6rem;
