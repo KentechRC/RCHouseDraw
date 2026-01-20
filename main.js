@@ -1,4 +1,4 @@
-const API_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; 
+const API_URL = 'https://script.google.com/macros/s/AKfycbzmxSwqcYdU-_1YGG1JZI8smNFgLt_PF3YwaNbRiXNtHFw2ZdkWpQMd1s65hMAbuZ6QNA/exec'; 
 
 // Initial Star Background Generation
 function createStars() {
@@ -47,27 +47,21 @@ async function checkHouse() {
     loader.style.display = 'block';
 
     try {
-        // TODO: Replace with actual fetch call
-        // const response = await fetch(`${API_URL}?name=${name}&dob=${dob}`);
-        // const data = await response.json();
-        
-        // MOCKING DATA FOR DEMO for the USER
-        // Remove this block when real API is ready
-        await new Promise(r => setTimeout(r, 1500)); // Simulate network delay
-        
-        let data = null;
-        // Demo logic
-        if (name === "테스트" || name === "Test") {
-            if (dob === "20050101") data = { house: "Edison", row: 1, name: name };
-            else if (dob === "20050102") data = { house: "Tesla", row: 2, name: name };
-        }
-        
-        // End of Mock
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            body: JSON.stringify({ name: name, dob: dob })
+        });
 
+        const data = await response.json();
+        
         loader.style.display = 'none';
 
-        if (data) {
+        if (data.result === 'success') {
             resultSection.style.display = 'block';
+            
+            // Hide Input
+            inputSection.style.display = 'none';
+
             if (data.house === 'Edison') {
                 edisonCard.style.display = 'block';
                 teslaCard.style.display = 'none';
@@ -75,12 +69,10 @@ async function checkHouse() {
                 teslaCard.style.display = 'block';
                 edisonCard.style.display = 'none';
             }
-            
-            // Record check time
-            recordConfirmationTime(data.row);
         } else {
-            // Not Found
+            // Not Found or Error
             inputSection.style.display = 'block';
+            errorMsg.innerText = data.message || '정보를 찾을 수 없습니다.';
             errorMsg.style.display = 'block';
         }
 
@@ -88,27 +80,12 @@ async function checkHouse() {
         console.error("Error:", error);
         loader.style.display = 'none';
         inputSection.style.display = 'block';
-        alert("오류가 발생했습니다. 나중에 다시 시도해주세요.");
+        alert("서버 통신 중 오류가 발생했습니다.");
     }
 }
 
-async function recordConfirmationTime(rowNum) {
-    if (API_URL === 'YOUR_GOOGLE_SCRIPT_URL_HERE') return; // Skip if no API
-
-    try {
-        await fetch(API_URL, {
-            method: 'POST',
-            mode: 'no-cors', // Google Scripts often needs this for simple posts
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ row: rowNum, timestamp: new Date().toISOString() })
-        });
-        console.log("Time recorded for row:", rowNum);
-    } catch (e) {
-        console.log("Failed to record time", e);
-    }
-}
+// remove recordConfirmationTime as the server handles existing logic
+// function recordConfirmationTime... removed
 
 function resetForm() {
     document.getElementById('resultSection').style.display = 'none';
