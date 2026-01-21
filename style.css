@@ -59,6 +59,15 @@ body {
     cursor: default;
 }
 
+/* Push text away from center to avoid covering by login box */
+.house-zone.left {
+    padding-right: 300px; /* Shifts text to the left */
+}
+
+.house-zone.right {
+    padding-left: 300px; /* Shifts text to the right */
+}
+
 .house-zone:hover {
     background-color: rgba(0, 21, 46, 0.3); /* Lighten on Hover */
 }
