@@ -454,9 +454,37 @@ input:focus {
 
 @media (max-width: 768px) {
     .screen-logo {
-        width: 150px;
+        width: 120px;
         top: 1.5rem;
         left: 1.5rem;
+    }
+
+    .container {
+        padding: 2rem 1.5rem;
+        width: 85%;
+    }
+
+    .result-message {
+        font-size: 1.3rem; /* Scaled down from 1.8rem */
+        margin-bottom: 1.5rem;
+    }
+
+    .student-name-text {
+        font-size: 1.5rem; /* Scaled down from 2.0rem */
+    }
+
+    .house-name-text {
+        font-size: 1.8rem; /* Scaled down from 2.5rem */
+    }
+
+    .cinematic-slogan {
+        font-size: 1.5rem; /* Scaled down from 2.5rem */
+        margin-top: 1.5rem;
+        width: 95%;
+    }
+    
+    .final-details {
+        width: 100%;
     }
 }
 
