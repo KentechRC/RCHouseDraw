@@ -115,21 +115,21 @@ RCHouseDraw/
 
 ```mermaid
 flowchart LR
-    User[사용자] -->|접속| Web[GitHub Pages<br/>(Client)]
+    User[사용자] -->|접속| Web["GitHub Pages<br/>(Client)"]
     
-    subgraph Client Side
+    subgraph Client_Side ["Client Side"]
         Web -->|입력| Form[로그인 폼]
         Form -->|POST 요청| Fetch[fetch API]
     end
     
-    subgraph Server Side (Google)
+    subgraph Server_Side ["Server Side (Google)"]
         Fetch -->|doPost| GAS[Google Apps Script]
-        GAS -->|조회/기록| Sheet[(Google Spreadsheet)]
+        GAS -->|조회/기록| Sheet[("Google Spreadsheet")]
         Sheet -->|데이터| GAS
         GAS -->|JSON 응답| Fetch
     end
     
-    Fetch -->|결과 연출| UI[결과 화면<br/>(에디슨/테슬라)]
+    Fetch -->|결과 연출| UI["결과 화면<br/>(에디슨/테슬라)"]
 ```
 
 ---
