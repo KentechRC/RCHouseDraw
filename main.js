@@ -28,6 +28,7 @@ function createStars() {
 async function checkHouse() {
     const name = document.getElementById('studentName').value.trim();
     const dob = document.getElementById('birthDate').value.trim();
+    const agreeCheck = document.getElementById('agreeCheck');
     const errorMsg = document.getElementById('errorMsg');
     
     const introSection = document.getElementById('introSection');
@@ -37,6 +38,12 @@ async function checkHouse() {
     // Validation
     if(!name || dob.length !== 8) {
         errorMsg.innerText = '이름과 생년월일(8자리)을 정확히 입력해주세요.';
+        errorMsg.style.display = 'block';
+        return;
+    }
+
+    if (!agreeCheck.checked) {
+        errorMsg.innerText = '하우스 배정에 동의해주세요.';
         errorMsg.style.display = 'block';
         return;
     }
@@ -53,7 +60,11 @@ async function checkHouse() {
         // Fetch API
         const fetchPromise = fetch(API_URL, {
             method: 'POST',
-            body: JSON.stringify({ name: name, dob: dob })
+            body: JSON.stringify({ 
+                name: name, 
+                dob: dob,
+                agree: true 
+            })
         });
 
         // Wait for BOTH the delay and the fetch to complete
