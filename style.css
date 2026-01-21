@@ -333,6 +333,7 @@ input:focus {
     font-size: 2.5rem; /* Slightly smaller to fit multi-line */
     font-weight: normal; /* Font already has weight */
     color: #fff;
+    margin-top: 2rem;
     text-transform: uppercase;
     letter-spacing: 3px;
     opacity: 0;
@@ -391,7 +392,7 @@ input:focus {
     position: relative;
     width: 90%;
     max-width: 500px;
-    height: 500px;
+    max-height: 500px;
     aspect-ratio: 1 / 1.2; 
     display: flex;
     justify-content: center;
@@ -460,6 +461,7 @@ input:focus {
     font-size: 1.3rem;
     color: #fff;
     margin-top: 0.5rem;
+    margin-bottom: 1rem;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     font-weight: 500;
 }
