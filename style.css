@@ -23,8 +23,8 @@
 body {
     font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
     background-color: var(--bg-color);
-    /* Background Image with Dark Overlay */
-    background-image: linear-gradient(rgba(0, 21, 46, 0.85), rgba(0, 21, 46, 0.85)), url('src/기숙사.png');
+    /* Pure Image Background - Overlay handled by zones */
+    background-image: url('src/기숙사.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -37,6 +37,50 @@ body {
     margin: 0;
 }
 
+/* Background Interaction Zones */
+#bgInteractLayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Behind everything */
+    display: flex;
+}
+
+.house-zone {
+    flex: 1;
+    height: 100%;
+    background-color: rgba(0, 21, 46, 0.85); /* Default Dark Overlay */
+    transition: background-color 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+
+.house-zone:hover {
+    background-color: rgba(0, 21, 46, 0.3); /* Lighten on Hover */
+}
+
+.zone-tooltip {
+    font-size: 3rem;
+    font-weight: 800;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+    pointer-events: none; /* Let clicks pass through if needed */
+}
+
+.house-zone:hover .zone-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.zone-tooltip.edison { color: var(--accent-red); }
+.zone-tooltip.tesla { color: var(--accent-yellow); }
+
 /* Background Stars */
 .stars {
     position: fixed;
@@ -44,21 +88,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 1; /* Above background zones */
     pointer-events: none;
-}
-
-.star {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    animation: twinkle var(--duration) infinite ease-in-out;
-    opacity: 0;
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0; transform: scale(0.5); }
-    50% { opacity: 0.8; transform: scale(1.2); }
 }
 
 /* Glassmorphism Container */
@@ -76,6 +107,7 @@ body {
     position: relative;
     overflow: hidden;
     transition: all 0.5s ease;
+    z-index: 10; /* Above interaction layer */
 }
 
 /* Typography */
@@ -483,6 +515,15 @@ input:focus {
 }
 
 @media (max-width: 768px) {
+    body {
+        /* Mobile Background Image WITH Overlay (since interact layer is hidden) */
+        background-image: linear-gradient(rgba(0, 21, 46, 0.85), rgba(0, 21, 46, 0.85)), url('src/기숙사-모바일.png');
+    }
+
+    #bgInteractLayer {
+        display: none;
+    }
+
     .screen-logo {
         width: 120px;
         top: 1.5rem;
