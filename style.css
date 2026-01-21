@@ -391,7 +391,7 @@ input:focus {
     position: relative;
     width: 90%;
     max-width: 500px;
-    height: auto;
+    height: 500px;
     aspect-ratio: 1 / 1.2; 
     display: flex;
     justify-content: center;
