@@ -4,7 +4,7 @@
 
 ![RC Logo](./src/RC-logo.svg)
 
-### KENTECH 1기/2기/3기... 신입생들을 위한 디지털 기숙사 배정 시스템
+### KENTECH 신입생들을 위한 디지털 기숙사 배정 시스템
 
 **"당신의 에너지가 이끄는 하우스는 어디입니까?"**
 
@@ -78,7 +78,6 @@ KENTECH Digital House Sorting은 신입생들에게 **마법 같은 기숙사 �
 ### 2. 인터랙티브 배경 (Background Interaction)
 PC 화면에서는 배경의 건물(기숙사)과 상호작용할 수 있습니다.
 - **Hover Effect**: 마우스를 올리면 해당 하우스 구역이 밝아지며 이름이 나타납니다.
-- **Electric Click**: 하우스 이름(EDISON/TESLA)을 클릭하면 전기가 통하는 듯한 짜릿한 애니메이션 효과를 제공합니다.
 
 ### 3. 실시간 하우스 배정 (Sorting API)
 사용자의 이름과 생년월일을 입력하면 Google Apps Script(GAS)를 통해 서버 통신이 이루어집니다.
