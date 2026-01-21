@@ -10,11 +10,13 @@
     --accent-sky: #00a4e3; /* Sky Blue */
     --accent-blue: #2b60de; /* Blue */
     --accent-yellow: #ffd700; /* Edison Yellow */
+    --accent-red: #ff3333; /* Edison Red (New) */
     --text-white: #ffffff;
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-blur: blur(20px);
 }
+
 
 body {
     font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
@@ -412,11 +414,11 @@ input:focus {
 }
 
 .house-img.edison {
-    filter: drop-shadow(0 0 50px rgba(255, 215, 0, 0.6));
+    filter: drop-shadow(0 0 50px rgba(255, 51, 51, 0.8)); /* Red Glow */
 }
 
 .house-img.tesla {
-    filter: drop-shadow(0 0 50px rgba(0, 164, 227, 0.8));
+    filter: drop-shadow(0 0 50px rgba(255, 215, 0, 0.8)); /* Yellow Glow */
 }
 
 @keyframes imageReveal {
