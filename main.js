@@ -125,8 +125,8 @@ function showResult(house, name) {
     else koreanHouseName = house;
 
     // Set Result Message
-    const message = `${name}학생은 ${koreanHouseName}하우스로 배정되었습니다`;
-    document.getElementById('resultMessage').innerText = message;
+    const message = `<span class="student-name-text">${name}</span> 학생은 <span class="house-name-text ${houseClass}">${koreanHouseName}</span> 하우스로 배정되었습니다`;
+    document.getElementById('resultMessage').innerHTML = message;
 
     // 1. Activate Overlay
     overlay.style.display = 'flex';
