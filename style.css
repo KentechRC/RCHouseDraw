@@ -133,6 +133,7 @@ input:focus {
     justify-content: center;
     margin-bottom: 1.5rem;
     gap: 10px;
+    flex-wrap: nowrap; /* Force single line */
 }
 
 .agreement-group input[type="checkbox"] {
@@ -140,6 +141,7 @@ input:focus {
     height: 20px;
     margin: 0;
     cursor: pointer;
+    flex-shrink: 0; /* Prevent checkbox from shrinking */
 }
 
 .agreement-group label {
@@ -147,6 +149,7 @@ input:focus {
     font-size: 1rem;
     color: #fff;
     cursor: pointer;
+    white-space: nowrap; /* Force text to stay on one line */
 }
 
 /* Magic Button */
