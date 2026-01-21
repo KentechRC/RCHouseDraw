@@ -23,7 +23,11 @@
 body {
     font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
     background-color: var(--bg-color);
-    background-image: radial-gradient(circle at 50% 30%, rgba(43, 96, 222, 0.2) 0%, transparent 60%);
+    /* Background Image with Dark Overlay */
+    background-image: linear-gradient(rgba(0, 21, 46, 0.85), rgba(0, 21, 46, 0.85)), url('src/기숙사.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: var(--text-white);
     min-height: 100vh;
     display: flex;
