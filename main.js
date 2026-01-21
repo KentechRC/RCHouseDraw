@@ -64,7 +64,7 @@ async function checkHouse() {
         analyzingSection.style.display = 'none';
 
         if (data.result === 'success') {
-            showResult(data.house);
+            showResult(data.house, name);
         } else {
             // Error Handling: Go back to intro
             introSection.style.display = 'block';
@@ -82,7 +82,7 @@ async function checkHouse() {
 }
 
 
-function showResult(house) {
+function showResult(house, name) {
     const overlay = document.getElementById('resultOverlay');
     const sloganText = document.getElementById('sloganText');
     const resultImg = document.getElementById('resultHouseImg');
@@ -117,6 +117,16 @@ function showResult(house) {
     sloganText.innerText = slogan;
     resultImg.src = imgSrc;
     resultImg.classList.add(houseClass);
+
+    // Korean House Name Mapping
+    let koreanHouseName = '';
+    if (house === 'Edison') koreanHouseName = '에디슨';
+    else if (house === 'Tesla') koreanHouseName = '테슬라';
+    else koreanHouseName = house;
+
+    // Set Result Message
+    const message = `${name}학생은 ${koreanHouseName}하우스로 배정되었습니다`;
+    document.getElementById('resultMessage').innerText = message;
 
     // 1. Activate Overlay
     overlay.style.display = 'flex';

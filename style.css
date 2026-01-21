@@ -436,3 +436,29 @@ input:focus {
 
 /* Hide original result section elements when using overlay if desired, 
    but for now we might use overlay AS the result section */
+
+/* Screen Logo (Top Left) */
+.screen-logo {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    width: 200px; /* Adjust size as needed */
+    z-index: 50; /* Above stars and container, below overlay (9999) */
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .screen-logo {
+        width: 150px;
+        top: 1.5rem;
+        left: 1.5rem;
+    }
+}
+
+.result-message {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-top: 2rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+}
