@@ -52,17 +52,20 @@ async function checkHouse() {
     errorMsg.style.display = 'none';
     introSection.style.display = 'none';
     analyzingSection.style.display = 'flex'; // Flex for centering
+    
+    // Add loading mode class to body to disable interactions
+    document.body.classList.add('loading-mode');
 
     try {
-        // Create a promise that resolves after 2000ms (2 seconds)
-        const delayPromise = new Promise(resolve => setTimeout(resolve, 2000));
+        // Create a promise that resolves after 4500ms (4.5 seconds)
+        const delayPromise = new Promise(resolve => setTimeout(resolve, 4500));
         
         // Fetch API
         const fetchPromise = fetch(API_URL, {
             method: 'POST',
             body: JSON.stringify({ 
                 name: name, 
-                dob: dob,
+                dob: dob, 
                 agree: true 
             })
         });
@@ -73,6 +76,9 @@ async function checkHouse() {
 
         // TRANSITION: Analyzing -> Result
         analyzingSection.style.display = 'none';
+        
+        // Remove loading mode class
+        document.body.classList.remove('loading-mode');
 
         if (data.result === 'success') {
             showResult(data.house, name);
@@ -87,6 +93,7 @@ async function checkHouse() {
         console.error("Error:", error);
         analyzingSection.style.display = 'none';
         introSection.style.display = 'block';
+        document.body.classList.remove('loading-mode'); // Ensure class is removal on error
         errorMsg.innerText = "서버 통신 중 오류가 발생했습니다.";
         errorMsg.style.display = 'block';
     }
