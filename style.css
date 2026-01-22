@@ -242,46 +242,29 @@ input:focus {
     height: 300px;
 }
 
-.energy-sphere {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #fff, var(--accent-sky));
-    box-shadow: 0 0 30px var(--accent-sky), inset 0 0 20px #fff;
-    position: relative;
-    animation: pulseEnergy 1.5s infinite alternate;
-    margin-bottom: 2rem;
+.sorting-hat-container {
+    margin-bottom: 1.5rem;
+    perspective: 1000px;
 }
 
-.energy-ring {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 140px;
-    height: 140px;
-    border: 2px solid transparent;
-    border-top-color: var(--accent-sky);
-    border-bottom-color: var(--accent-blue);
-    border-radius: 50%;
-    animation: spinEnergy 1s linear infinite;
+.thinking-hat {
+    width: 180px;
+    height: auto;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+    animation: hatThink 3s ease-in-out infinite;
+    transform-origin: center bottom;
 }
 
-.energy-ring:nth-child(2) {
-    width: 120px;
-    height: 120px;
-    border-left-color: #fff;
-    animation: spinEnergy 2s linear infinite reverse;
-}
-
-@keyframes pulseEnergy {
-    0% { transform: scale(1); box-shadow: 0 0 30px var(--accent-sky); }
-    100% { transform: scale(1.1); box-shadow: 0 0 60px var(--accent-sky), 0 0 100px var(--accent-blue); }
-}
-
-@keyframes spinEnergy {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+@keyframes hatThink {
+    0%, 100% { 
+        transform: rotate(0deg) translateY(0); 
+    }
+    25% { 
+        transform: rotate(-5deg) translateY(-5px); 
+    }
+    75% { 
+        transform: rotate(5deg) translateY(-5px); 
+    }
 }
 
 .analyzing-text {
