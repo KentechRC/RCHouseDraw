@@ -114,11 +114,11 @@ function showResult(house, name) {
 
     if (house === 'Edison') {
         slogan = "“천재는 1%의 영감과\n99%의 노력으로 이루어진다”";
-        imgSrc = "src/에디슨 로고.png";
+        imgSrc = "src/EdisonLogo.png";
         houseClass = "edison";
     } else if (house === 'Tesla') {
         slogan = "“당신의 증오를 전기로 바꿀 수 있다면,\n온 세상을 밝힐 것이다.”";
-        imgSrc = "src/테슬라 로고.png";
+        imgSrc = "src/TeslaLogo.png";
         houseClass = "tesla";
     } else {
         slogan = "UNKNOWN HOUSE";
