@@ -29,6 +29,7 @@ async function checkHouse() {
     const name = document.getElementById('studentName').value.trim();
     const dob = document.getElementById('birthDate').value.trim();
     const agreeCheck = document.getElementById('agreeCheck');
+    const agreeCheck2 = document.getElementById('agreeCheck2');
     const errorMsg = document.getElementById('errorMsg');
     
     const introSection = document.getElementById('introSection');
@@ -42,8 +43,8 @@ async function checkHouse() {
         return;
     }
 
-    if (!agreeCheck.checked) {
-        errorMsg.innerText = '하우스 배정에 동의해주세요.';
+    if (!agreeCheck.checked || !agreeCheck2.checked) {
+        errorMsg.innerText = '모든 동의 항목에 체크해주세요.';
         errorMsg.style.display = 'block';
         return;
     }

@@ -180,7 +180,7 @@ input:focus {
 .agreement-group {
     display: flex;
     align-items: flex-start; /* Align top for multi-line text */
-    justify-content: center;
+    justify-content: flex-start; /* Left align to match form fields */
     margin-bottom: 1.5rem;
     gap: 10px;
     /* flex-wrap: nowrap; Default is fine, keeps checkbox and label side-by-side */
@@ -604,6 +604,22 @@ input:focus {
     
     .final-details {
         width: 100%;
+    }
+
+    /* Adjust agreement text for mobile */
+    .agreement-group label {
+        font-size: 0.8rem; /* Reduced size */
+        line-height: 1.3;
+    }
+    
+    .agreement-group input[type="checkbox"] {
+        width: 16px; /* Reduced checkbox size */
+        height: 16px;
+        margin-top: 3px;
+    }
+
+    .warning-text {
+        font-size: 0.75rem; 
     }
 }
 

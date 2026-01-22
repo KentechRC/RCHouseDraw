@@ -46,10 +46,16 @@
                 <input type="text" id="birthDate" placeholder="20031231" maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
             </div>
 
-            <!-- Agreement Checkbox -->
+            <!-- Agreement Checkbox 1 -->
             <div class="agreement-group">
                 <input type="checkbox" id="agreeCheck">
                 <label for="agreeCheck">위의 입력된 내용은 본인이 직접 입력한 정보임을 확인합니다.</label>
+            </div>
+
+            <!-- Agreement Checkbox 2 -->
+            <div class="agreement-group">
+                <input type="checkbox" id="agreeCheck2">
+                <label for="agreeCheck2">하우스 배정 후에는 변경할 수 없음을 확인했습니다.</label>
             </div>
 
             <button class="magic-btn" onclick="checkHouse()">하우스 배정</button>
