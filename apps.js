@@ -28,6 +28,7 @@ function doPost(e) {
     const houseIdx = headers.indexOf('하우스');
     const timeIdx = headers.indexOf('확인시간');
     const agreeIdx = headers.indexOf('배정동의');
+    const seqIdx = headers.indexOf('배정순번');
 
     if (nameIdx === -1 || dobIdx === -1 || genderIdx === -1 || houseIdx === -1) {
       return createResponse({ result: 'error', message: '시트 헤더 설정이 올바르지 않습니다.' });
@@ -71,10 +72,58 @@ function doPost(e) {
         sheet.getRange(foundRowIndex, agreeIdx + 1).setValue("동의완료");
       }
       
-      // 기록이 시트에 반영되도록 강제 적용
+// (2) [핵심 기능] 순번 및 현황 기록: "00 E(남,여) T(남,여)"
+      if (seqIdx !== -1) {
+        // 통계 변수 초기화
+        let maxSeq = 0;
+        let countStats = { 'E_M': 0, 'E_F': 0, 'T_M': 0, 'T_F': 0 };
+
+        // 전체 데이터를 순회하며 현재 상태 집계 (나 자신 제외하고 카운트)
+        for (let i = 1; i < data.length; i++) {
+          // 지금 처리 중인 '나'는 데이터(data) 배열에는 아직 하우스가 없으므로 건너뜀
+          if (i === foundRowIndex - 1) continue;
+
+          // 기존 데이터 통계 내기
+          const rGender = String(data[i][genderIdx] || "").normalize('NFC').trim();
+          const rHouse = String(data[i][houseIdx] || "").toUpperCase().trim();
+
+          if (rHouse === 'EDISON') {
+            if (rGender === '남' || rGender === '남자') countStats.E_M++;
+            else if (rGender === '여' || rGender === '여자') countStats.E_F++;
+          } else if (rHouse === 'TESLA') {
+            if (rGender === '남' || rGender === '남자') countStats.T_M++;
+            else if (rGender === '여' || rGender === '여자') countStats.T_F++;
+          }
+
+          // 순번 최대값 찾기 (형식이 "12 E(...)" 이므로 앞의 숫자만 추출)
+          const seqCell = String(data[i][seqIdx] || "").trim();
+          const seqNum = parseInt(seqCell.split(' ')[0]); // 공백 기준 앞부분만 가져옴
+          if (!isNaN(seqNum) && seqNum > maxSeq) {
+            maxSeq = seqNum;
+          }
+        }
+
+        // '나'의 배정 결과 통계에 반영
+        if (assignedHouse.toUpperCase() === 'EDISON') {
+          if (currentGender === '남' || currentGender === '남자') countStats.E_M++;
+          else countStats.E_F++;
+        } else { // TESLA
+          if (currentGender === '남' || currentGender === '남자') countStats.T_M++;
+          else countStats.T_F++;
+        }
+
+        // 최종 문자열 생성
+        const newSeq = maxSeq + 1;
+        // 포맷: "00 E(남,여) T(남,여)"
+        const logString = `${newSeq} E(${countStats.E_M},${countStats.E_F}) T(${countStats.T_M},${countStats.T_F})`;
+
+        // 시트에 기록
+        sheet.getRange(foundRowIndex, seqIdx + 1).setValue(logString);
+      }
+      
+      // 변경 사항 즉시 반영
       SpreadsheetApp.flush();
     }
-
     return createResponse({ 
       result: 'success', 
       name: name,
@@ -127,66 +176,8 @@ function getBalancedHouse(data, houseIdx, genderIdx, currentGender) {
   return Math.random() < 0.5 ? 'Edison' : 'Tesla';
 } /* 응답 생성 함수
  */
+
 function createResponse(data) {
   return ContentService.createTextOutput(JSON.stringify(data))
     .setMimeType(ContentService.MimeType.JSON);
-}
-/**
- * [진단 도구] 현재 시트의 데이터가 제대로 읽히는지 확인하는 함수
- * 이 함수를 선택하고 '실행'을 눌러 로그를 확인하세요.
- */
-function testDiagnosis() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  const data = sheet.getDataRange().getValues();
-  const headers = data[0];
-
-  // 1. 헤더 위치 확인
-  const genderIdx = headers.indexOf('성별');
-  const houseIdx = headers.indexOf('하우스');
-  
-  console.log(`[헤더점검] 성별 열 번호: ${genderIdx} (0부터 시작), 하우스 열 번호: ${houseIdx}`);
-  
-  if (genderIdx === -1 || houseIdx === -1) {
-    console.error("🚨 오류: 헤더 이름을 찾을 수 없습니다! 시트의 1행에 '성별', '하우스'가 정확히 있는지(공백 확인) 보세요.");
-    return;
-  }
-
-  // 2. 남/여 각각 카운트 테스트
-  let mEdison = 0, mTesla = 0, fEdison = 0, fTesla = 0;
-  let unknown = 0;
-
-  console.log("----- 데이터 전수 조사 시작 -----");
-
-  for (let i = 1; i < data.length; i++) {
-    // 실제 배정 로직과 똑같이 데이터 가공
-    const rawGender = data[i][genderIdx];
-    const rawHouse = data[i][houseIdx];
-    
-    const gender = String(rawGender || "").normalize('NFC').trim();
-    const house = String(rawHouse || "").trim().toUpperCase();
-
-    if (house === "") continue; // 배정 안 된 사람은 패스
-
-    if (gender === '남') { // 시트에 적힌게 '남'인지 '남자'인지 확인해서 수정 필요
-      if (house === 'EDISON') mEdison++;
-      else if (house === 'TESLA') mTesla++;
-    } else if (gender === '여') {
-      if (house === 'EDISON') fEdison++;
-      else if (house === 'TESLA') fTesla++;
-    } else {
-      console.warn(`[주의] ${i+1}행의 성별을 인식 못함: "${rawGender}" (변환후: "${gender}")`);
-      unknown++;
-    }
-  }
-
-  console.log("----- 최종 진단 결과 -----");
-  console.log(`👨 남자: Edison ${mEdison}명 vs Tesla ${mTesla}명`);
-  console.log(`👩 여자: Edison ${fEdison}명 vs Tesla ${fTesla}명`);
-  console.log(`❓ 성별 불명: ${unknown}명`);
-
-  if (mEdison === 0 && mTesla === 0 && fEdison === 0 && fTesla === 0) {
-    console.error("🚨 심각: 모든 카운트가 0입니다. 코드가 기존 데이터를 전혀 못 읽고 있습니다. (성별 텍스트 불일치 유력)");
-  } else {
-    console.log("✅ 코드는 정상적으로 숫자를 세고 있습니다. 1번(배포) 문제일 가능성이 높습니다.");
-  }
 }
