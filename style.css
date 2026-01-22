@@ -24,7 +24,7 @@ body {
     font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
     background-color: var(--bg-color);
     /* Pure Image Background - Overlay handled by zones */
-    background-image: url('src/dormitory.png');
+    background-image: url('src/dormitoryReal.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -565,7 +565,7 @@ input:focus {
 @media (max-width: 768px) {
     body {
         /* Mobile Background Image WITH Overlay (since interact layer is hidden) */
-        background-image: linear-gradient(rgba(0, 21, 46, 0.85), rgba(0, 21, 46, 0.85)), url('src/dormitory.png');
+        background-image: linear-gradient(rgba(0, 21, 46, 0.85), rgba(0, 21, 46, 0.85)), url('src/dormitoryReal.png');
     }
 
     #bgInteractLayer {
