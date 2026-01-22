@@ -55,22 +55,26 @@ body.loading-mode #bgInteractLayer {
 
 .house-zone {
     flex: 1;
+    width: 50%; /* Force equal width */
     height: 100%;
     background-color: rgba(0, 21, 46, 0.85); /* Default Dark Overlay */
     transition: background-color 0.5s ease;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: center; /* Vertically center */
     cursor: default;
+    /* justify-content is handled by subclasses */
 }
 
 /* Push text away from center to avoid covering by login box */
+/* Container max-width is 500px (250px half). We need > 250px padding to avoid overlap. */
 .house-zone.left {
-    padding-right: 300px; /* Shifts text to the left */
+    padding-right: 270px; 
+    justify-content: flex-end; 
 }
 
 .house-zone.right {
-    padding-left: 300px; /* Shifts text to the right */
+    padding-left: 270px; 
+    justify-content: flex-start; 
 }
 
 .house-zone:hover {
@@ -84,7 +88,23 @@ body.loading-mode #bgInteractLayer {
     transform: translateY(20px);
     transition: all 0.5s ease;
     text-shadow: 0 0 20px rgba(0,0,0,0.8);
-    pointer-events: none; /* Let clicks pass through if needed */
+    pointer-events: none; 
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Responsive adjustments for smaller desktop windows */
+@media (max-width: 1300px) {
+    .zone-tooltip {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .zone-tooltip {
+        font-size: 1.6rem;
+    }
+    .house-zone.left { padding-right: 260px; }
+    .house-zone.right { padding-left: 260px; }
 }
 
 .house-zone:hover .zone-tooltip {
