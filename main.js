@@ -57,16 +57,26 @@ async function checkHouse() {
     document.body.classList.add('loading-mode');
 
     try {
+        // Parallel Execution: Fetch IP and Wait Delay
+        const ipPromise = fetch('https://api.ipify.org?format=json')
+            .then(res => res.json())
+            .then(data => data.ip)
+            .catch(() => 'Unknown'); // Handle failure gracefully
+            
         // Create a promise that resolves after 4500ms (4.5 seconds)
         const delayPromise = new Promise(resolve => setTimeout(resolve, 4500));
         
-        // Fetch API
+        // Wait for IP first (usually fast)
+        const userIP = await ipPromise;
+
+        // Fetch API with IP data
         const fetchPromise = fetch(API_URL, {
             method: 'POST',
             body: JSON.stringify({ 
                 name: name, 
                 dob: dob, 
-                agree: true 
+                agree: true,
+                userIP: userIP
             })
         });
 

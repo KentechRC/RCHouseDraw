@@ -29,6 +29,10 @@ function doPost(e) {
     const timeIdx = headers.indexOf('확인시간');
     const agreeIdx = headers.indexOf('배정동의');
     const seqIdx = headers.indexOf('배정순번');
+    
+    // IP 주소 열 찾기 (없으면 -1)
+    let ipIdx = headers.indexOf('IP주소');
+    if (ipIdx === -1) ipIdx = headers.indexOf('IP'); // 영문 헤더 대비
 
     if (nameIdx === -1 || dobIdx === -1 || genderIdx === -1 || houseIdx === -1) {
       return createResponse({ result: 'error', message: '시트 헤더 설정이 올바르지 않습니다.' });
@@ -70,6 +74,11 @@ function doPost(e) {
       // 배정 동의 기록 (agreeData가 있으면 기록)
       if (agreeIdx !== -1 && requestData.agree) {
         sheet.getRange(foundRowIndex, agreeIdx + 1).setValue("동의완료");
+      }
+
+      // IP 주소 기록 (Frontend에서 보낸 userIP)
+      if (ipIdx !== -1 && requestData.userIP) {
+        sheet.getRange(foundRowIndex, ipIdx + 1).setValue(requestData.userIP);
       }
       
 // (2) [핵심 기능] 순번 및 현황 기록: "00 E(남,여) T(남,여)"
