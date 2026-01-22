@@ -179,17 +179,18 @@ input:focus {
 /* Agreement Checkbox */
 .agreement-group {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Align top for multi-line text */
     justify-content: center;
     margin-bottom: 1.5rem;
     gap: 10px;
-    flex-wrap: nowrap; /* Force single line */
+    /* flex-wrap: nowrap; Default is fine, keeps checkbox and label side-by-side */
 }
 
 .agreement-group input[type="checkbox"] {
     width: 20px;
     height: 20px;
     margin: 0;
+    margin-top: 2px; /* Align with first line of text */
     cursor: pointer;
     flex-shrink: 0; /* Prevent checkbox from shrinking */
 }
@@ -199,7 +200,10 @@ input:focus {
     font-size: 1rem;
     color: #fff;
     cursor: pointer;
-    white-space: nowrap; /* Force text to stay on one line */
+    white-space: normal; /* Allow text to wrap */
+    text-align: left; /* Better readability for multi-line */
+    line-height: 1.4;
+    word-break: keep-all; /* Prevent awkward word breaks in Korean */
 }
 
 /* Magic Button */
