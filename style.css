@@ -573,7 +573,7 @@ input:focus {
     }
 
     .screen-logo {
-        width: 120px;
+        width: 80px; /* Reduced from 120px */
         top: 1.5rem;
         left: 1.5rem;
     }
