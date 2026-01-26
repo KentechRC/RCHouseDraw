@@ -526,9 +526,9 @@ input:focus {
 .result-image-container {
     position: relative;
     width: 90%;
-    max-width: 450px; /* Reduced max-width */
-    max-height: 450px;
-    aspect-ratio: 1 / 1.1; /* Adjusted aspect ratio */ 
+    max-width: 450px;
+    max-height: 40vh; /* Changed from 450px to 40vh to fit screen height */
+    aspect-ratio: 1 / 1.1; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -755,9 +755,10 @@ input:focus {
 
 @media (max-width: 480px) {
     .modal-btn {
-        padding: 0.5rem 0.6rem; /* Much smaller padding */
-        font-size: 0.7rem; /* Significantly reduced font size */
+        padding: 0.5rem 0.5rem; /* Minimized padding */
+        font-size: 0.65rem; /* Even smaller font */
         white-space: nowrap; /* Prevent wrapping */
+        min-width: 0; /* Allow shrinking */
     }
     
     .modal-buttons {
