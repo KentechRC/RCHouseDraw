@@ -475,8 +475,10 @@ input:focus {
     text-shadow: 0 0 10px rgba(255,255,255,0.5);
     font-family: 'Cafe24Gowoonbam', sans-serif; 
     white-space: pre-wrap; /* Allow newlines */
-    line-height: 1.6;
-    max-width: 90%;
+    line-height: 1.4;
+    width: 90%;
+    word-break: keep-all; /* Prevent awkward word breaks */
+    margin-bottom: 2rem; /* Add bottom margin */
 }
 
 .cinematic-slogan.reveal {
@@ -502,12 +504,12 @@ input:focus {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--accent-sky);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     opacity: 0;
     transform: translateY(-20px);
     text-align: center;
-    position: absolute; /* Position absolutely to sit above the image area */
-    top: 15%; /* Adjust based on viewport */
+    position: relative; /* Changed from absolute to flow naturally */
+    /* top: 15%; removed absolute position */
     width: 100%;
     z-index: 10;
 }
@@ -749,4 +751,16 @@ input:focus {
 .modal-btn.cancel:hover {
     background: rgba(255, 255, 255, 0.2);
     color: #fff;
+}
+
+@media (max-width: 480px) {
+    .modal-btn {
+        padding: 0.6rem 0.8rem; /* Reduced padding */
+        font-size: 0.8rem; /* Smaller font */
+        white-space: nowrap; /* Prevent wrapping */
+    }
+    
+    .modal-buttons {
+        gap: 5px;
+    }
 }
