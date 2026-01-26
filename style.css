@@ -526,8 +526,8 @@ input:focus {
 .result-image-container {
     position: relative;
     width: 90%;
-    max-width: 500px; /* Increased from 450px */
-    max-height: 55vh; /* Increased from 40vh */
+    max-width: 650px; /* Significantly increased from 500px */
+    max-height: 60vh; /* Increased from 55vh */
     aspect-ratio: 1 / 1.1; 
     display: flex;
     justify-content: center;
