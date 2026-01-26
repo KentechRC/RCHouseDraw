@@ -526,8 +526,8 @@ input:focus {
 .result-image-container {
     position: relative;
     width: 90%;
-    max-width: 450px;
-    max-height: 40vh; /* Changed from 450px to 40vh to fit screen height */
+    max-width: 500px; /* Increased from 450px */
+    max-height: 55vh; /* Increased from 40vh */
     aspect-ratio: 1 / 1.1; 
     display: flex;
     justify-content: center;
@@ -646,7 +646,7 @@ input:focus {
 }
 
 .result-message {
-    font-size: 1.8rem;
+    font-size: 2.0rem; /* Increased from 1.8rem */
     color: #fff;
     margin-top: 0.5rem;
     margin-bottom: 2rem;
@@ -656,14 +656,14 @@ input:focus {
 
 /* Emphasized Text Styles */
 .student-name-text {
-    font-size: 2.0rem;
+    font-size: 2.2rem; /* Increased from 2.0rem */
     font-weight: 800;
     color: #fff;
     /* text-shadow removed */
 }
 
 .house-name-text {
-    font-size: 2.5rem;
+    font-size: 3.0rem; /* Increased from 2.5rem */
     font-weight: 900;
     margin: 0 5px; /* Slight spacing */
     /* text-shadow removed */
