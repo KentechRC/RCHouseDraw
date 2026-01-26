@@ -376,8 +376,8 @@ input:focus {
 }
 
 .house-icon-large {
-    font-size: 6rem;
-    margin-bottom: 1rem;
+    font-size: 5rem; /* Reduced from 6rem */
+    margin-bottom: 0.5rem; /* Reduced margin */
     display: block;
     animation: floatIcon 3s ease-in-out infinite;
 }
@@ -466,19 +466,19 @@ input:focus {
     font-size: 2.5rem; /* Slightly smaller to fit multi-line */
     font-weight: normal; /* Font already has weight */
     color: #fff;
-    margin-top: 2rem;
+    margin-top: 1rem; /* Reduced margin */
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     opacity: 0;
     transform: translateY(20px);
     text-align: center;
     text-shadow: 0 0 10px rgba(255,255,255,0.5);
     font-family: 'Cafe24Gowoonbam', sans-serif; 
     white-space: pre-wrap; /* Allow newlines */
-    line-height: 1.4;
+    line-height: 1.3; /* Tighter line height */
     width: 90%;
     word-break: keep-all; /* Prevent awkward word breaks */
-    margin-bottom: 2rem; /* Add bottom margin */
+    margin-bottom: 1.5rem; /* Checked */
 }
 
 .cinematic-slogan.reveal {
@@ -526,9 +526,9 @@ input:focus {
 .result-image-container {
     position: relative;
     width: 90%;
-    max-width: 500px;
-    max-height: 500px;
-    aspect-ratio: 1 / 1.2; 
+    max-width: 450px; /* Reduced max-width */
+    max-height: 450px;
+    aspect-ratio: 1 / 1.1; /* Adjusted aspect ratio */ 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -755,8 +755,8 @@ input:focus {
 
 @media (max-width: 480px) {
     .modal-btn {
-        padding: 0.6rem 0.8rem; /* Reduced padding */
-        font-size: 0.8rem; /* Smaller font */
+        padding: 0.5rem 0.6rem; /* Much smaller padding */
+        font-size: 0.7rem; /* Significantly reduced font size */
         white-space: nowrap; /* Prevent wrapping */
     }
     
