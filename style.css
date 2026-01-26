@@ -606,16 +606,16 @@ input:focus {
     }
 
     .result-message {
-        font-size: 1.3rem; /* Scaled down from 1.8rem */
+        font-size: 1.1rem; /* Reduced from 1.3rem */
         margin-bottom: 1.5rem;
     }
 
     .student-name-text {
-        font-size: 1.5rem; /* Scaled down from 2.0rem */
+        font-size: 1.3rem; /* Reduced from 1.5rem */
     }
 
     .house-name-text {
-        font-size: 1.8rem; /* Scaled down from 2.5rem */
+        font-size: 1.6rem; /* Reduced from 1.8rem */
     }
 
     .cinematic-slogan {
