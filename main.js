@@ -1,4 +1,5 @@
 const API_URL = 'https://script.google.com/macros/s/AKfycbzmxSwqcYdU-_1YGG1JZI8smNFgLt_PF3YwaNbRiXNtHFw2ZdkWpQMd1s65hMAbuZ6QNA/exec'; 
+let pendingResultData = null;
 
 // Star Background
 function createStars() {
@@ -92,7 +93,13 @@ async function checkHouse() {
         document.body.classList.remove('loading-mode');
 
         if (data.result === 'success') {
-            showResult(data.house, name);
+            if (data.isAlreadyAssigned) {
+                // Show Modal for confirmation
+                showConfirmationModal(data.house, name, data);
+            } else {
+                // New assignment - show result immediately
+                showResult(data.house, name);
+            }
         } else {
             // Error Handling: Go back to intro
             introSection.style.display = 'block';
@@ -195,6 +202,38 @@ function resetForm() {
     document.getElementById('studentName').value = '';
     document.getElementById('birthDate').value = '';
     document.getElementById('errorMsg').style.display = 'none';
+    document.getElementById('errorMsg').style.display = 'none';
 }
+
+function showConfirmationModal(house, name, data) {
+    pendingResultData = data;
+    const modal = document.getElementById('confirmationModal');
+    const messageP = document.getElementById('confirmationMessage');
+    
+    // Set message
+    messageP.innerText = `${name} 학생은 ${house} 하우스로 이미 배정되었습니다.\n배정 결과를 조회하시겠습니까?`;
+    
+    modal.style.display = 'flex';
+}
+
+function confirmResult() {
+    const modal = document.getElementById('confirmationModal');
+    modal.style.display = 'none';
+    
+    if (pendingResultData) {
+        showResult(pendingResultData.house, pendingResultData.name);
+        pendingResultData = null; 
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById('confirmationModal');
+    modal.style.display = 'none';
+    pendingResultData = null;
+    
+    // Go back to intro
+    resetForm();
+}
+
 
 window.addEventListener('load', createStars);
