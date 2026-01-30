@@ -66,7 +66,7 @@ KENTECH Digital House Sorting은 신입생들에게 **마법 같은 기숙사 �
 
 | 로딩 화면 | 에디슨 배정 | 테슬라 배정 |
 |:---:|:---:|:---:|
-| ![로딩](./screenshot/로딩중.png) | ![에디슨](./screenshot/에디슨하우스.png) | ![테슬라](./screenshot/테슬라하우스.png) |
+| ![로딩](./screenshot/로딩화면.png) | ![에디슨](./screenshot/에디슨하우스.png) | ![테슬라](./screenshot/테슬라하우스.png) |
 
 ### 3. 모달창 (Modal)
 이미 배정된 사용자가 다시 배정을 시도할 경우, 기존 배정 여부를 안내하는 모달창이 표시됩니다.
