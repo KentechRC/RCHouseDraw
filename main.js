@@ -233,7 +233,8 @@ function resetForm() {
 }
 
 function showConfirmationModal(house, name, data) {
-    pendingResultData = data;
+    // Store local name in the dataset so we don't depend on server echoing it back
+    pendingResultData = { ...data, name: name };
     const modal = document.getElementById('confirmationModal');
     const messageP = document.getElementById('confirmationMessage');
     
