@@ -232,14 +232,14 @@ function resetForm() {
     document.getElementById('errorMsg').style.display = 'none';
 }
 
-function showConfirmationModal(house, name, data) {
+function showConfirmationModal(name, data) {
     // Store local name in the dataset so we don't depend on server echoing it back
     pendingResultData = { ...data, name: name };
     const modal = document.getElementById('confirmationModal');
     const messageP = document.getElementById('confirmationMessage');
     
     // Set message
-    messageP.innerText = `${name} 학생은 ${house} 하우스로 이미 배정되었습니다.\n배정 결과를 조회하시겠습니까?`;
+    messageP.innerText = `${name} 학생은 이미 배정되었습니다.\n배정 결과를 조회하시겠습니까?`;
     
     modal.style.display = 'flex';
 }
