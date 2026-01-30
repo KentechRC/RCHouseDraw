@@ -232,7 +232,7 @@ function resetForm() {
     document.getElementById('errorMsg').style.display = 'none';
 }
 
-function showConfirmationModal(name, data) {
+function showConfirmationModal(house, name, data) {
     // Store local name in the dataset so we don't depend on server echoing it back
     pendingResultData = { ...data, name: name };
     const modal = document.getElementById('confirmationModal');
