@@ -62,7 +62,7 @@ KENTECH Digital House Sorting은 신입생들에게 **마법 같은 기숙사 �
 | ![중앙](./screenshot/중앙호버.png) | ![왼쪽](./screenshot/왼쪽호버.png) | ![오른쪽](./screenshot/오른쪽호버.png) |
 
 ### 2. 로딩 및 결과 (Loading & Result)
-**3D 소팅 햇(Sorting Hat)**이 등장하여 고민하는 듯한 애니메이션과 함께, 자욱한 안개 효과가 더해져 긴장감을 고조시킵니다.
+**소팅 햇(Sorting Hat)**이 등장하여 고민하는 듯한 애니메이션과 함께, 자욱한 안개 효과가 더해져 긴장감을 고조시킵니다.
 
 | 로딩 화면 | 에디슨 배정 | 테슬라 배정 |
 |:---:|:---:|:---:|
@@ -80,11 +80,11 @@ KENTECH Digital House Sorting은 신입생들에게 **마법 같은 기숙사 �
 ## 주요 기능
 
 ### 1. 시네마틱 인트로 & UI
-**글래스모피즘(Glassmorphism)** 디자인을 적용하여 현대적이고 고급스러운 느낌을 주었으며, 배경에는 흐르는 별 애니메이션을 적용하여 신비로운 분위기를 연출했습니다.
+**글래스모피즘(Glassmorphism)** 디자인을 적용하여 현대적이고 고급스러운 느낌을 주었습니다.
 
 ### 2. 인터랙티브 배경 (Background Interaction)
 PC 화면에서는 배경의 건물(기숙사)과 상호작용할 수 있습니다.
-- **Hover Effect**: 마우스를 올리면 해당 하우스 구역이 밝아지며 이름이 나타납니다.
+- **Hover Effect**: 마우스를 올리면 해당 하우스 구역이 밝아지며 이름이 나타나 하우스 별 기숙사 건물이 무엇인지 알 수 있습니다.
 
 ### 3. 실시간 하우스 배정 (Sorting API)
 사용자의 이름과 생년월일을 입력하면 Google Apps Script(GAS)를 통해 서버 통신이 이루어집니다.
@@ -126,10 +126,10 @@ RCHouseDraw/
 ├── README.md           # 프로젝트 문서
 └── src/                # 이미지 및 리소스 폴더
     ├── RC-logo.svg
-    ├── 기숙사.png
-    ├── 기숙사-모바일.png
-    ├── 에디슨 로고.png
-    └── 테슬라 로고.png
+    ├── dormitoryReal.png
+    ├── sortingHat.png
+    ├── EdisonLogo.png
+    └── TeslaLogo.png
 ```
 
 ---
