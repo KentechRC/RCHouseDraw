@@ -95,7 +95,7 @@ async function checkHouse() {
         if (data.result === 'success') {
             if (data.isAlreadyAssigned) {
                 // Show Modal for confirmation
-                showConfirmationModal(data.house, name, data);
+                showConfirmationModal(name, data);
             } else {
                 // New assignment - show result immediately
                 showResult(data.house, name);
@@ -232,7 +232,7 @@ function resetForm() {
     document.getElementById('errorMsg').style.display = 'none';
 }
 
-function showConfirmationModal(house, name, data) {
+function showConfirmationModal(name, data) {
     // Store local name in the dataset so we don't depend on server echoing it back
     pendingResultData = { ...data, name: name };
     const modal = document.getElementById('confirmationModal');
