@@ -26,7 +26,7 @@ function doPost(e) {
     const dobIdx = headers.indexOf('생년월일'); 
     const genderIdx = headers.indexOf('성별');
     const houseIdx = headers.indexOf('하우스');
-    const timeIdx = headers.indexOf('확인시간');
+    const timeIdx = headers.indexOf('배정시각');
     const agreeIdx = headers.indexOf('배정동의');
     const seqIdx = headers.indexOf('배정순번');
     
