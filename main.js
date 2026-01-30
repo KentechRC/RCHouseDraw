@@ -161,8 +161,35 @@ function showResult(house, name) {
     else koreanHouseName = house;
 
     // Set Result Message
-    const message = `<div style="margin-bottom: 20px;"><span class="student-name-text">축하합니다!!</span></div><span class="student-name-text">${name}</span> 학생은 <span class="house-name-text ${houseClass}">${house}</span> HOUSE 입니다`;
-    document.getElementById('resultMessage').innerHTML = message;
+    // Set Result Message (Safe from XSS)
+    const resultMessageContainer = document.getElementById('resultMessage');
+    resultMessageContainer.innerHTML = ''; // Clear previous content
+
+    const div = document.createElement('div');
+    div.style.marginBottom = '20px';
+    
+    const congratsSpan = document.createElement('span');
+    congratsSpan.className = 'student-name-text';
+    congratsSpan.textContent = '축하합니다!!';
+    div.appendChild(congratsSpan);
+    
+    resultMessageContainer.appendChild(div);
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'student-name-text';
+    nameSpan.textContent = name; // Safe text insertion
+    resultMessageContainer.appendChild(nameSpan);
+
+    const textNode = document.createTextNode(' 학생은 ');
+    resultMessageContainer.appendChild(textNode);
+
+    const houseSpan = document.createElement('span');
+    houseSpan.className = `house-name-text ${houseClass}`;
+    houseSpan.textContent = house;
+    resultMessageContainer.appendChild(houseSpan);
+
+    const endTextNode = document.createTextNode(' HOUSE 입니다');
+    resultMessageContainer.appendChild(endTextNode);
 
     // 1. Activate Overlay
     overlay.style.display = 'flex';

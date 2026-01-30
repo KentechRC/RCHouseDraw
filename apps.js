@@ -79,7 +79,12 @@ function doPost(e) {
 
       // IP 주소 기록 (Frontend에서 보낸 userIP)
       if (ipIdx !== -1 && requestData.userIP) {
-        sheet.getRange(foundRowIndex, ipIdx + 1).setValue(requestData.userIP);
+        let safeIP = String(requestData.userIP).trim();
+        // CSV Injection 방지: '='로 시작하면 텍스트로 강제 변환
+        if (safeIP.startsWith('=')) {
+          safeIP = "'" + safeIP;
+        }
+        sheet.getRange(foundRowIndex, ipIdx + 1).setValue(safeIP);
       }
       
 // (2) [핵심 기능] 순번 및 현황 기록: "00 E(남,여) T(남,여)"
