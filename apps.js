@@ -180,11 +180,12 @@ function getBalancedHouse(data, houseIdx, genderIdx, currentGender) {
   // 로그: 여기서 숫자가 제대로 나오는지 확인해야 합니다.
   console.log(`[배정체크] 신청자성별:${targetGender} | 현재상황 -> Edison:${edisonCount}명 vs Tesla:${teslaCount}명`);
 
-  return Math.random() < 0.5 ? 'Edison' : 'Tesla';
-}
+  // 3. 적은 쪽으로 무조건 배정 (같을 때만 랜덤)
+  if (edisonCount < teslaCount) return 'Edison';
+  if (teslaCount < edisonCount) return 'Tesla';
 
-/**
- * 응답 생성 함수
+  return Math.random() < 0.5 ? 'Edison' : 'Tesla';
+} /* 응답 생성 함수
  */
 
 function createResponse(data) {
