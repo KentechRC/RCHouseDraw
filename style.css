@@ -343,13 +343,6 @@ input:focus {
     }
 }
 
-.analyzing-text {
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    animation: textFlicker 2s infinite;
-}
-
 @keyframes textFlicker {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
