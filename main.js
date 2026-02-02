@@ -138,11 +138,11 @@ function showResult(house, name) {
     let houseClass = "";
 
     if (house === 'Edison') {
-        slogan = "“천재는 1%의 영감과\n99%의 노력으로 이루어진다”";
+        slogan = "“Genius is 1% inspiration and\n99% perspiration.”";
         imgSrc = "src/EdisonLogo.png";
         houseClass = "edison";
     } else if (house === 'Tesla') {
-        slogan = "“당신의 증오를 전기로 바꿀 수 있다면,\n온 세상을 밝힐 것이다.”";
+        slogan = "“The present is theirs\nbut the future is mine.”";
         imgSrc = "src/TeslaLogo.png";
         houseClass = "tesla";
     } else {
