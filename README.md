@@ -47,7 +47,7 @@ KENTECH Digital House Sorting은 신입생들에게 **마법 같은 기숙사 �
 
 | 항목 | 링크 |
 |------|------|
-| 배포 URL | [KentechRC/RCHouseDraw](https://kentechrc.github.io/RCHouseDraw/) |
+| 배포 URL | [KentechRC/RCHouseDraw](https://rchousedraw.netlify.app/) |
 | GitHub | [KentechRC/RCHouseDraw Repository](https://github.com/KentechRC/RCHouseDraw) |
 
 ---
